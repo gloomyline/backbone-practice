@@ -6,13 +6,18 @@ define(['jquery','backbone'],function($,B){
             this.render()
             // 监听model的验证事件，当模型数据改变的时候
             this.listenTo(this.model,'invalid',this.validatedHandle)
+
+            // 对模型添加change事件
+            this.model.on('change', function () {
+                    window.location.href = 'index.html'
+                })
         },
         render:function(){
             // 把this.model中的数据填写在表单内容中
             // this.$('input[name="name"]').val(this.model.get('name'))
             var temModel = this.model;   //把this.model暂存
             this.$('input[type="text"]').each(function(){
-                // 此处的this
+                /////此处的this表示当前遍历到的标签
                 $(this).val(temModel.get($(this).attr('name')))
             })
             this.$('textarea').val(this.model.get('description'))
@@ -45,7 +50,8 @@ define(['jquery','backbone'],function($,B){
             console.log('------------------')
             if(this.model.isValid()){
                 this.model.save()  
-                window.location.href = 'index.html'
+                
+                
             }
             else{
 

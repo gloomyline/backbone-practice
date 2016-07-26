@@ -1,7 +1,7 @@
 define(['backbone','localStorage'],function(B){
     var Model = B.Model.extend({
         // localStorage:new B.LocalStorage('card'),
-        url:'/card',
+        urlRoot:'/card',
         defaults:{
             name:'',
             title:'',
@@ -28,8 +28,10 @@ define(['backbone','localStorage'],function(B){
             }
            
         },
+        ////////执行服务器交互操作后的返回结果
         parse:function(res){
             console.log(res)
+            // 设置模型的值，触发change事件
             this.set(res.data)
         }
     })

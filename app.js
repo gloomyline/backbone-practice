@@ -3,10 +3,16 @@ var path = require('path');
 
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var db = require('mongoose')
-var app = express();
-db.connect('mongodb://localhost/student_db');
 
+var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+var db = require('mongoose')
+db.connect('mongodb://localhost/student_db');
 ////引入arttemplate模板
 var template = require('art-template');
 template.config('base', '');
@@ -22,13 +28,12 @@ var Card = db.model('card', {
   email: { type: String, default: "" },
   phone: { type: String, default: "" },
   qq: { type: String, default: "" },
-  description: { type: String, default: "" }
+  description: { type: String, default: "" },
+  create_time:{type:Date,default:Date.now},
+  update_time:{type:Date,default:Date.now}
 })
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 
 // 使用mongoose保存数据到数据库，新建一个collections集合，名字为card
 // 存数据
@@ -41,6 +46,7 @@ app.post('/card', (req, res) => {
   // 在服务器端保存数据 把数据写入数据库
   // 在返回数据的时候把保存的数据读取出来放入data值中
   var card = new Card(req.body);
+  card.update_time = Date()
   card.save((err) => {
     if (err) {
       res.json({ status: 'n', msg: "新增数据失败", data: {} })
@@ -55,22 +61,26 @@ app.post('/card', (req, res) => {
 
 })
 
-app.put('/card', (req, res) => {
+// 此处是修改操作执行的方法
+app.put('/card/:id', (req, res) => {
   console.log('------执行/card put请求---------')
-  console.log('req.query---------')
-  console.log(req.query);
+  console.log('req.params---------')
+  console.log(req.params);
   console.log('req.body---------')
   console.log(req.body);
   // 在服务器端保存数据 把数据写入数据库
   // 在返回数据的时候把保存的数据读取出来放入data值中
   var card = new Card(req.body);
-  Card.findByIdAndUpdate(req.body.id, req.body, (err) => {
+  card.update_time = Date()
+  // 根据id进行查找并修改
+  Card.findByIdAndUpdate(req.params.id, req.body, (err) => {
+    // 如果报错 执行err中的方法
     if (err) {
       res.json({ status: 'n', msg: "修改数据失败", data: {} })
     }
     else {
       var data = card.toObject();
-      data.id = req.body.id;
+      data.id = req.params.id;
       delete data._id;
       res.json({ status: 'y', msg: "修改数据成功", data: data })
     }
@@ -78,28 +88,55 @@ app.put('/card', (req, res) => {
 })
 
 // 取数据
-app.get('/card', (req, res) => {
+///   /:id? 取id参数，此id参数为可选的
+///   /card或者/card/a7sd
+app.get('/card/:id?', (req, res) => {
   console.log('------执行/card get请求---------')
-  console.log('req.query---------')
-  console.log(req.query);
+  console.log('req.params---------')
+  console.log(req.params);
   console.log('req.body---------')
   console.log(req.body);
-  Card.findById(req.query.id, (err, data) => {
-    if (err) {
-      res.json({ status: 'n', msg: "获取数据失败", data: {} })
-    }
-    else {
-      if (!!data) {
-        var temData = data.toObject();
-        temData.id = data._id;
-        delete temData._id
-        res.json({ status: "y", msg: "获取数据成功", data: temData });
+  // 判断req.params.id是否存在
+  if(req.params.id){
+    // 如果存在req.params.id内容，执行findById操作
+      Card.findById(req.params.id, (err, data) => {
+      if (err) {     //如果查询失败    执行
+        res.json({ status: 'n', msg: "获取数据失败", data: {} })
       }
       else {
-        res.json({ status: "n", msg: "获取数据失败", data: {} });
+        // 判断查询返回的 数据是否为空
+        if (!!data) {
+          // 对查询返回的数据做处理
+          var temData = data.toObject();
+          temData.id = data._id;
+          delete temData._id
+          res.json({ status: "y", msg: "获取数据成功", data: temData });
+        }
+        else {
+          res.json({ status: "n", msg: "获取数据失败", data: {} });
+        }
       }
-    }
-  })
+    })
+  }
+  else{
+    // 获取所有的数据
+    Card.find().exec((err,data)=>{
+      if(err){  //获取数据失败
+        res.json({ status: 'n', msg: "获取数据失败", data: {} })
+      }
+      else{   //获取数据成功
+        // 对查询到的结果数据做遍历操作
+        data = data.map(function(item){
+          // 处理每一次遍历的对象，增加id属性，删除di属性
+          item = item.toObject();
+          item.id = item._id;
+          delete item._id;
+          return item;
+        })
+      }
+      res.json({status:'y',msg:'获取数据成功',data:data})
+    })
+  }
 })
 
 

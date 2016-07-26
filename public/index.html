@@ -5,24 +5,34 @@
         <link rel="stylesheet" href="stylesheets/style.css">
     </head>
     <body>
-        <article>
-            <img class="logo" src="images/logo.png">
-            <h1><small></small></h1>
-            <address>
-                <!--地址-->
-                <p class="addr"></p>
-                <p class="tel"></p>
-                <p class="qq"></p>
-                <p class="email"></p>                
-            </address>
-            <img class="pic" src="images/pic.png" alt="">
-        </article>
-        <aside>
-            <!--文章内容-->
-            <div class="photo"></div>
-            <p></p>
-        </aside>
-        <div class="edit" onclick="location.href='edit.html'">编辑</div>
-        <script data-main="controllers/index_controllers" src="libs/require.js"></script>
+        
+        <!--<script data-main="controllers/index_controllers" src="libs/require.js"></script>-->
+        <script type="text/html" id="indexView">
+            <main>
+                <article>
+                <img class="logo" src="images/logo.png">
+                <h1><%= name %><small><%= title %></small></h1>
+                <address>
+                    <!--地址-->
+                    <p class="addr"><%= address %></p>
+                    <p class="tel"><%= phone %></p>
+                    <p class="qq"><%= qq %></p>
+                    <p class="email"><%= email %></p>                
+                </address>
+                <img class="pic" src="images/pic.png" alt="">
+                </article>
+                <aside>
+                    <!--文章内容-->
+                    <div class="photo"></div>
+                    <p><%= description %></p>
+                </aside>
+            </main>
+            <a class="edit" onclick="location.href='edit.html'" style="right:120px;">编辑</div>
+            <a class="edit" onclick="location.href='new.html'">新增</div>
+        </script>
+        <a href="#index">【index】</a>
+        <a href="#new">【new】</a>
+        <a href="#edit/kkk">【edit】</a>
+        <script src="libs/require.js" data-main="app"></script>
     </body>
 </html>
