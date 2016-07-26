@@ -1,0 +1,38 @@
+body{
+    background-color: #333;
+    color: white;
+    font-weight: bolder;
+    margin: 0;
+    padding: 0;
+}
+#nav{
+    width: 400px;
+    height: 600px;
+    border: 1px solid #eee;
+    margin: 10px auto;
+    background-color: #222;
+}
+input{
+    display: block;
+    width: 360px;
+    height: 25px;
+    border-radius: 5px;
+}
+textarea{
+    display: block;
+    border-radius: 5px;
+}
+.set{
+    margin: 20px ;
+}
+span{
+    color: red;
+}
+.but{
+    text-align: center;
+}
+button{
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bolder;
+}
