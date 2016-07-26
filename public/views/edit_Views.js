@@ -1,6 +1,7 @@
 define(['jquery','backbone'],function($,B){
     var View = B.View.extend({
-        el:$('form'),
+        el:$('body'),
+        template:_.template($('#editView').html()),
         initialize:function(){
             console.log('edit View initialized ...')
             this.render()
@@ -9,10 +10,11 @@ define(['jquery','backbone'],function($,B){
 
             // 对模型添加change事件
             this.model.on('change', function () {
-                    window.location.href = 'index.html'
-                })
+                window.location.href = 'index.html'
+            })
         },
         render:function(){
+            this.$el.html(this.template(this.model.toJSON()))
             // 把this.model中的数据填写在表单内容中
             // this.$('input[name="name"]').val(this.model.get('name'))
             var temModel = this.model;   //把this.model暂存
@@ -39,7 +41,7 @@ define(['jquery','backbone'],function($,B){
             // this.model.set('title',this.$('input[name="title"]').val())
     
             // this.$el.serialize();
-            var arr = this.$el.serializeArray(); // [{"name":"name","value":""},{"name":"title","value",""}]
+            var arr = this.$('form').serializeArray(); // [{"name":"name","value":""},{"name":"title","value",""}]
             
             // 使用underscore的reduce方法，处理表单数据
             var data = _.reduce(arr,function(preVal,curVal){

@@ -3,10 +3,9 @@
         <meta charset="utf-8">
         <title>名片</title>
         <link rel="stylesheet" href="stylesheets/style.css">
+        <link rel="stylesheet" type="text/css" href="stylesheets/edit.css">
     </head>
     <body>
-        
-        <!--<script data-main="controllers/index_controllers" src="libs/require.js"></script>-->
         <script type="text/html" id="indexView">
             <main>
                 <article>
@@ -27,12 +26,50 @@
                     <p><%= description %></p>
                 </aside>
             </main>
-            <a class="edit" onclick="location.href='edit.html'" style="right:120px;">编辑</div>
-            <a class="edit" onclick="location.href='new.html'">新增</div>
+            <a class="edit" onclick="location.href='#edit/<%= id %>'" style="right:120px;">编辑</div>
+            <a class="edit" onclick="location.href='#new'">新增</div>
         </script>
-        <a href="#index">【index】</a>
+        <script type="text/html" id="editView">
+            <div id="nav">
+                <form action="">
+                    <div class="set">
+                        <label for="">姓名: <span for="name"></span></label>
+                        <input type="text" name="name">
+                    </div>
+                    <div class="set">
+                        <label for="">职位: <span for="title"></span></label>
+                        <input type="text" name="title">
+                    </div>
+                    <div class="set">
+                        <label for="">地址: <span for="address"></span></label>
+                        <input type="text" name="address">
+                    </div>
+                    <div class="set">
+                        <label for="">手机号: <span for="phone"></span></label>
+                        <input type="text" name="phone">
+                    </div>
+                    <div class="set">
+                        <label for="">QQ: <span for="qq"></span></label>
+                        <input type="text" name="qq">
+                    </div>
+                    <div class="set">
+                        <label for="">邮箱: <span for="email"></span></label>
+                        <input type="text" name="email">
+                    </div>
+                    <div class="set">
+                        <label for="">简介: <span for="description"></span></label>
+                        <input type="text" name="description">
+                    </div>
+                    <div class="but">
+                        <button>提交</button>
+                    </div>
+                </form>
+            </div>
+        </script>
+
+        <!--<a href="#index">【index】</a>
         <a href="#new">【new】</a>
-        <a href="#edit/kkk">【edit】</a>
+        <a href="#edit/kkk">【edit】</a>-->
         <script src="libs/require.js" data-main="app"></script>
     </body>
 </html>
