@@ -22,7 +22,7 @@
 
 define([
     'card',
-    'edit_Views'
+    'editView'
 ], function(Model, View) {
     'use strict';
     var Controller = {

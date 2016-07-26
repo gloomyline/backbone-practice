@@ -83,10 +83,7 @@
                     <th>操作</th>
                 </thead>
 
-                <!--<% _.each(obj,function(item){ %>
-                    <div><%= item %></div>
-                <% }) %>-->
-                <% _.each(obj,function(item){ %>
+                <% _.each(model,function(item){ %>
                     <tr>
                         <td><%= item.name %></td>
                         <td><%= item.title %></td>
@@ -100,7 +97,9 @@
                         <td><a href="#index/<%= item.id %>">查看</a></td>
                     </tr>
                 <% }) %>
+
             </table>
+            <div class="edit" style="right:80px" onclick="location.href='#new'">新增</div>
         </script>
 
         <!--<a href="#index">【index】</a>

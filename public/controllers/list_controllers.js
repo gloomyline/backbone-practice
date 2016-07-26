@@ -1,15 +1,18 @@
 define([
-    'cards'
-], function(C) {
+    'cards',
+    'listView'
+], function(C,View) {
     'use strict';
     var Controller = {
         init:function(){
             var c = new C()
-            c.fetch()
-            c.on('change',function(){
+            c.on('reset',function(){
                 console.log(c.models)
                 new View({model:c.models})
             })
+
+            // 设置reset为true才能触发collection的reset事件
+            c.fetch({reset : true})
         }
     }
     

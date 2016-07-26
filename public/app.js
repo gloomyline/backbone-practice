@@ -5,8 +5,9 @@ require.config({
         'underscore': 'libs/underscore',
         'backbone': 'libs/backbone',
         'localStorage': 'libs/backbone.localStorage',
-        'edit_Views': 'views/edit_Views',
-        'index_Views':'views/index_Views',
+        'editView': 'views/edit_Views',
+        'indexView':'views/index_Views',
+        'listView' : 'views/list_Views',
         'card': 'models/card',
         'cards' : 'models/cards',
         'router':'router',
@@ -18,5 +19,6 @@ require.config({
 })
 
 require(['backbone', 'router',], function (B, router) {
+    // 启动backbone的路由历史记录
     B.history.start();
 })

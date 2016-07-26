@@ -141,3 +141,22 @@ aside p{
     padding: 5px;
     cursor: pointer;
 }
+
+table{
+    width:75%;
+    border-collapse: collapse;
+    border: 1px solid #222;
+    margin:0 auto;
+    text-align: center;
+    color:#eee;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+thead,tr,td{
+    border-collapse: collapse;
+    border: 1px solid #222;
+    text-align: center;
+    color:#ccc;
+    height: 30px;
+}

@@ -4,15 +4,16 @@ function (B,indexController,editController,newController,listController) {
         // 定义路由信息
         // 路由地址：执行函数
         routes: {
-            '' : 'index',
-            'index': 'index',
-            'edit/:id': 'edit',
-            'new': 'new',
-            'list':'list'
+            '' : 'list',
+            'index': 'list',
+            'index/:id' : 'index',
+            'edit/:id' : 'edit',
+            'new' : 'new',
+            'list' : 'list'
         },
-        index: function () {
+        index: function (id) {
             // index 路由执行的时候
-            indexController.init()
+            indexController.init(id)
             // console.log('index')
         },
         edit: function (id) {
