@@ -18,6 +18,23 @@ define([
                 return item.toJSON()
             })
             this.$el.html(this.template({model:arr}))
+        },
+        events:{'click #btnDel':'doDeleteHandler'},
+        doDeleteHandler:function(e){
+            if(confirm('确认删除')){
+                // 根据id获取需要删除的数据
+                var id = $(e.target).attr('data-del')
+                // underscore数据筛选
+                var tem = _.filter(this.model,{id:id})
+                if(tem.length>0){
+                    // destroy 调用服务器端的delete方法
+                    tem[0].destroy().done(function(res){
+                        location.href = '/'
+                    }).fail(function(err){
+                        console.log(err)
+                    })
+                }
+            }
         }
     })
 

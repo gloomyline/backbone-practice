@@ -10,7 +10,8 @@ define(['jquery','backbone'],function($,B){
 
             // 对模型添加change事件
             this.model.on('change', function () {
-                window.location.href = 'index.html'
+                // window.location.href = 'index.html'
+                console.log('changed')
             })
         },
         render:function(){
@@ -32,8 +33,8 @@ define(['jquery','backbone'],function($,B){
         validatedHandle:function(model,error){
             // console.log(model)
             // console.log(error)
-                $('span').text('')
-                this.$('span[for="'+error.attr+'"]').text(error.msg)
+            $('span').text('')
+            this.$('span[for="'+error.attr+'"]').text(error.msg)
         },
         submitHandle:function(e){
             e.preventDefault()
@@ -51,14 +52,33 @@ define(['jquery','backbone'],function($,B){
             this.model.set(data)
             console.log('------------------')
             if(this.model.isValid()){
-                this.model.save()  
-                
-                
+                /***
+                 * 写法一：
+                 * this.model.save().done(function(res){
+                 *  console.log(res)
+                 * }).fail(function(err){
+                 *  console.log(err)
+                 * })
+                 * 
+                 * 写法二：
+                 * this.model.save({
+                 *  success:function(res){
+                 *      console.log(res)
+                 *  },
+                 *  error:function(err){
+                 *      console.log(err)
+                 *  }
+                 * })
+                 */
+                this.model.save()
+                this.listenToOnce(this.model,'sync',function(){
+                    window.location.href = 'index.html'
+                })
+                console.log('验证成功')
             }
             else{
-
+                console.log('验证失败')
             }
-            
         }
     })
     return View

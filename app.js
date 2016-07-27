@@ -139,6 +139,22 @@ app.get('/card/:id?', (req, res) => {
   }
 })
 
+app.delete('/card/:id',(req,res) => {
+  var id = req.params.id
+  if(id){
+    Card.findByIdAndRemove(id,function(err){
+      if(err){
+        console.log(err)
+        res.json({status:'n',msg:'删除失败'})
+      }else{
+        res.json({status:'y',msg:'删除成功'})
+      }
+    })
+  }else{
+    res.json({status:'n',msg:'参数错误'})
+  }
+})
+
 
 app.listen(3001, (req, res) => {
   console.log('服务器运行中')
