@@ -19,7 +19,7 @@ define([
         },
         render:function(){
             // 处理传递过来的数据 为标准的json数据
-            var arr = this.model.map(function(item){
+            var arr = this.collection.models.map(function(item){
                 return item.toJSON()
             })
             this.$el.html(this.template({model:arr}))
@@ -31,10 +31,25 @@ define([
                 var id = $(e.target).attr('data-del')
                 // underscore数据筛选
                 var tem = _.filter(this.model,{id:id})
-                if(tem.length>0){
-                    // destroy 调用服务器端的delete方法
-                    tem[0].destroy().done(function(res){
-                        location.href = '/'
+                // if(tem.length>0){
+                //     // destroy 调用服务器端的delete方法
+                //     tem[0].destroy().done(function(res){
+                //         location.href = '/'
+                //     }).fail(function(err){
+                //         console.log(err)
+                //     })
+                // }
+                /***
+                 * 修改输出方法 此时传递过的数据为collection
+                 */
+                // 通过id获取model
+                var tem = this.collection.get(id)
+                if(tem){
+                    var that = this
+                    tem.destroy().done(function(res){
+                        console.log('destroy中的this------' + this)
+                        that.collection.remove(id)
+                        that.render()
                     }).fail(function(err){
                         console.log(err)
                     })
