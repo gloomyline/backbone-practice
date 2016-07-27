@@ -1,0 +1,52 @@
+<table>
+    <thead>
+        <th>姓名</th>
+        <th>职位</th>
+        <th>地址</th>
+        <th>手机号</th>
+        <th>QQ</th>
+        <th>邮箱</th>
+        <th>简介</th>
+        <th>创建时间</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </thead>
+
+    <% _.each(model,function(item){ %>
+        <tr>
+            <td>
+                <%= item.name %>
+            </td>
+            <td>
+                <%= item.title %>
+            </td>
+            <td>
+                <%= item.address %>
+            </td>
+            <td>
+                <%= item.phone %>
+            </td>
+            <td>
+                <%= item.qq %>
+            </td>
+            <td>
+                <%= item.email %>
+            </td>
+            <td>
+                <%= item.description %>
+            </td>
+            <td>
+                <%= item.create_time %>
+            </td>
+            <td>
+                <%= item.update_time %>
+            </td>
+            <td>
+                <a href="#index/<%= item.id %>">查看</a>
+                <a id="btnDel" href="javascript:void(0);" data-del="<%= item.id %>">删除</a>
+            </td>
+        </tr>
+        <% }) %>
+
+</table>
+<div class="edit" style="right:80px" onclick="location.href='#new'">新增</div>

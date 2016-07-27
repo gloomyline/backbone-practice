@@ -1,7 +1,9 @@
-define(['jquery','backbone'],function($,B){
+define(['jquery','backbone','text!tplEdit'],
+function($,B,tpl){
     var View = B.View.extend({
         el:$('body'),
-        template:_.template($('#editView').html()),
+        // template:_.template($('#editView').html()),
+        template:_.template(tpl),
         initialize:function(){
             console.log('edit View initialized ...')
             this.render()

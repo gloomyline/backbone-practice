@@ -1,11 +1,13 @@
 define([
     'jquery',
-    'backbone'
-], function($, B) {
+    'backbone',
+    'text!tplList'
+], function($, B,tpl) {
     'use strict';
     var view = B.View.extend({
         el:$('body'),
-        template:_.template($('#listView').html()),
+        // template:_.template($('#listView').html()),
+        template:_.template(tpl),
         // 初始化调用
         initialize:function(){
             console.log('list view initialized ...')

@@ -14,7 +14,11 @@ require.config({
         'indexController':'controllers/index_controllers',
         'editController':'controllers/edit_controllers',
         'newController' : 'controllers/new_controllers',
-        'listController' : 'controllers/list_controllers'
+        'listController' : 'controllers/list_controllers',
+        'text':'libs/text',
+        'tplList':'tpl/list.html',
+        'tplEdit':'tpl/edit.html',
+        'tplDetail':'tpl/detail.html'
     }
 })
 
