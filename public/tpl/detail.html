@@ -1,13 +1,13 @@
 <main>
     <article>
         <img class="logo" src="images/logo.png">
-        <h1><%= name %><small><%= title %></small></h1>
+        <h1>{{name}}<small>{{title}}</small></h1>
         <address>
             <!--地址-->
-            <p class="addr"><%= address %></p>
-            <p class="tel"><%= phone %></p>
-            <p class="qq"><%= qq %></p>
-            <p class="email"><%= email %></p>                
+            <p class="addr">{{address}}</p>
+            <p class="tel">{{phone}}</p>
+            <p class="qq">{{qq}}</p>
+            <p class="email">{{email}}</p>                
         </address>
         <img class="pic" src="images/pic.png" alt="">
     </article>
@@ -15,10 +15,10 @@
         <!--文章内容-->
         <div class="photo"></div>
         <p>
-            <%= description %>
+            {{description}}
         </p>
     </aside>
 </main>
 <a class="edit" onclick="location.href='#list'" style="right:170px;">列表</div>
-<a class="edit" onclick="location.href='#edit/<%= id %>'" style="right:110px;">编辑</div>
+<a class="edit" onclick="location.href='#edit/{{id}}'" style="right:110px;">编辑</div>
 <a class="edit" onclick="location.href='#new'">新增</div>

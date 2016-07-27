@@ -12,41 +12,41 @@
         <th>操作</th>
     </thead>
 
-    <% _.each(model,function(item){ %>
+    {{each model as item}}
         <tr>
             <td>
-                <%= item.name %>
+                 {{item.name}} 
             </td>
             <td>
-                <%= item.title %>
+                 {{item.title}}
             </td>
             <td>
-                <%= item.address %>
+                {{item.address}}
             </td>
             <td>
-                <%= item.phone %>
+                {{item.phone}}
             </td>
             <td>
-                <%= item.qq %>
+                {{item.qq}}
             </td>
             <td>
-                <%= item.email %>
+                {{item.email}}
             </td>
             <td>
-                <%= item.description %>
+                {{item.description}}
             </td>
             <td>
-                <%= item.create_time %>
+                {{item.create_time}}
             </td>
             <td>
-                <%= item.update_time %>
+                {{item.update_time}}
             </td>
             <td>
-                <a href="#index/<%= item.id %>">查看</a>
-                <a id="btnDel" href="javascript:void(0);" data-del="<%= item.id %>">删除</a>
+                <a href="#index/{{item.id}}">查看</a>
+                <a id="btnDel" href="javascript:void(0);" data-del="{{item.id}}">删除</a>
             </td>
         </tr>
-        <% }) %>
+        {{/each}}
 
 </table>
 <div class="edit" style="right:80px" onclick="location.href='#new'">新增</div>

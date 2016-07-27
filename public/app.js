@@ -18,7 +18,8 @@ require.config({
         'text':'libs/text',
         'tplList':'tpl/list.html',
         'tplEdit':'tpl/edit.html',
-        'tplDetail':'tpl/detail.html'
+        'tplDetail':'tpl/detail.html',
+        'template' : 'libs/template'
     }
 })
 
