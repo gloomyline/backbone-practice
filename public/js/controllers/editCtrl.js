@@ -6,7 +6,7 @@ app.controller('editCtrl', ['$scope', 'getDataService', '$routeParams', '$locati
             gd_s.getData($routeParams.id)
                 .then(function(res) {
                     console.log('获取数据成功');
-                    console.log(res);
+                    // console.log(res);
                     var data = res.data;
                     $scope.name = data.name;
                     $scope.title = data.title;
@@ -18,7 +18,7 @@ app.controller('editCtrl', ['$scope', 'getDataService', '$routeParams', '$locati
                 })
                 .catch(function(res) {
                     console.log('获取数据失败');
-                    console.log(res);
+                    // console.log(res);
                 })
 
             $scope.doPostData = function() {
@@ -34,12 +34,12 @@ app.controller('editCtrl', ['$scope', 'getDataService', '$routeParams', '$locati
                 gd_s.putData($routeParams.id, data)
                     .then(function(res) {
                         console.log('上传数据成功');
-                        console.log(res);
+                        // console.log(res);
                         $location.path('http://localhost:3001/#/');
                     })
                     .catch(function(res) {
                         console.log('上传数据失败');
-                        console.log(res);
+                        // console.log(res);
                     })
             }
 
@@ -58,12 +58,12 @@ app.controller('editCtrl', ['$scope', 'getDataService', '$routeParams', '$locati
                 gd_s.postData(data)
                     .then(function(res) {
                         console.log('上传数据成功');
-                        console.log(res);
+                        // console.log(res);
                         $location.path('http://localhost:3001/#/');
                     })
                     .catch(function(res) {
                         console.log('上传数据失败');
-                        console.log(res);
+                        // console.log(res);
                     })
             }
         }
