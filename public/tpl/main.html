@@ -1,5 +1,5 @@
-<table class="table table-bordered table-hover">
-    <tr>
+<table class="table table-bordered table-hover text-center">
+    <tr class="text-warning">
         <td>序号</td>
         <td>姓名</td>
         <td>tel</td>
@@ -7,7 +7,7 @@
         <td>qq</td>
         <td>操作</td>
     </tr>
-    
+
     <tr ng-repeat="item in data">
         <td>{{$index + 1}}</td>
         <td>
@@ -29,6 +29,6 @@
             <a class="btn btn-warning" ng-click="doDelFun(item.id)">删除</a>
         </td>
     </tr>
-        
+
 </table>
 <a href="#/new" class="btn btn-info pull-right">新增</a>
