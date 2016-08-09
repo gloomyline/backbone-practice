@@ -54,6 +54,7 @@ app.post('/card', (req, res) => {
             var data = card.toObject();
             data.id = data._id;
             delete data._id;
+            res.header('Access-Control-Allow-Origin', '*')
             res.json({ status: 'y', msg: "新增数据成功", data: data })
         }
     })
@@ -80,6 +81,7 @@ app.put('/card/:id', (req, res) => {
             var data = card.toObject();
             data.id = req.params.id;
             delete data._id;
+            res.header('Access-Control-Allow-Origin', '*')
             res.json({ status: 'y', msg: "修改数据成功", data: data })
         }
     })
@@ -107,6 +109,8 @@ app.get('/card/:id?', (req, res) => {
                     var temData = data.toObject();
                     temData.id = data._id;
                     delete temData._id
+
+                    res.header('Access-Control-Allow-Origin', '*')
                     res.json({ status: "y", msg: "获取数据成功", data: temData });
                 } else {
                     res.json({ status: "n", msg: "获取数据失败", data: {} });
@@ -128,7 +132,7 @@ app.get('/card/:id?', (req, res) => {
                     return item;
                 })
             }
-
+            res.header('Access-Control-Allow-Origin', '*')
             res.json({ status: 'y', msg: '获取数据成功', data: data })
         })
     }
@@ -142,6 +146,7 @@ app.delete('/card/:id', (req, res) => {
                 console.log(err)
                 res.json({ status: 'n', msg: '删除失败' })
             } else {
+                res.header('Access-Control-Allow-Origin', '*')
                 res.json({ status: 'y', msg: '删除成功' })
             }
         })

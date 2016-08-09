@@ -35,7 +35,15 @@ app.controller('editCtrl', ['$scope', 'getDataService', '$routeParams', '$locati
                     .then(function(res) {
                         console.log('上传数据成功');
                         // console.log(res);
-                        $location.path('http://localhost:3001/#/');
+
+                        // console.log(window.location.href);
+                        var httpUrl = window.location.href;
+                        if (httpUrl.substr(7, 1) === 'l') {
+                            $location.path('http://localhost:3001/#/');
+                        } else {
+                            $location.path('http://127.0.0.1:3001/#/');
+                        }
+
                     })
                     .catch(function(res) {
                         console.log('上传数据失败');
@@ -59,7 +67,16 @@ app.controller('editCtrl', ['$scope', 'getDataService', '$routeParams', '$locati
                     .then(function(res) {
                         console.log('上传数据成功');
                         // console.log(res);
-                        $location.path('http://localhost:3001/#/');
+
+                        var httpUrl = window.location.href;
+                        console.log(httpUrl.substr(7, 1));
+                        if (httpUrl.substr(7, 1) === 'l') {
+
+                            $location.path('http://localhost:3001/#/');
+                        } else {
+
+                            $location.path('http://127.0.0.1:3001/#/');
+                        }
                     })
                     .catch(function(res) {
                         console.log('上传数据失败');

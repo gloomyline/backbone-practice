@@ -15,13 +15,14 @@ app.controller('mainCtrl', ['$scope', 'getDataService', '$location', function($s
             gd_s.delData(params).then(function(res) {
                     console.log('删除数据成功');
                     // console.log(res);
+
+                    // console.log($location.path());
+                    $location.path('http://localhost:3001/#/');
                 })
                 .catch(function(res) {
                     console.log('删除数据失败');
                     // console.log(res);
                 })
-
-            $location.path('http://localhost:3001/#/');
         }
     }
 }])
