@@ -1,114 +1,27 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>名片</title>
-        <link rel="stylesheet" href="stylesheets/style.css">
-        <link rel="stylesheet" type="text/css" href="stylesheets/edit.css">
-    </head>
-    <body>
-        <script type="text/html" id="indexView">
-            <main>
-                <article>
-                <img class="logo" src="images/logo.png">
-                <h1><%= name %><small><%= title %></small></h1>
-                <address>
-                    <!--地址-->
-                    <p class="addr"><%= address %></p>
-                    <p class="tel"><%= phone %></p>
-                    <p class="qq"><%= qq %></p>
-                    <p class="email"><%= email %></p>                
-                </address>
-                <img class="pic" src="images/pic.png" alt="">
-                </article>
-                <aside>
-                    <!--文章内容-->
-                    <div class="photo"></div>
-                    <p><%= description %></p>
-                </aside>
-            </main>
-            <a class="edit" onclick="location.href='#list'" style="right:170px;">列表</div>
-            <a class="edit" onclick="location.href='#edit/<%= id %>'" style="right:110px;">编辑</div>
-            <a class="edit" onclick="location.href='#new'">新增</div>
-        </script>
-        
-        <script type="text/html" id="editView">
-            <div id="nav">
-                <form action="">
-                    <div class="set">
-                        <label for="">姓名: <span for="name"></span></label>
-                        <input type="text" name="name">
-                    </div>
-                    <div class="set">
-                        <label for="">职位: <span for="title"></span></label>
-                        <input type="text" name="title">
-                    </div>
-                    <div class="set">
-                        <label for="">地址: <span for="address"></span></label>
-                        <input type="text" name="address">
-                    </div>
-                    <div class="set">
-                        <label for="">手机号: <span for="phone"></span></label>
-                        <input type="text" name="phone">
-                    </div>
-                    <div class="set">
-                        <label for="">QQ: <span for="qq"></span></label>
-                        <input type="text" name="qq">
-                    </div>
-                    <div class="set">
-                        <label for="">邮箱: <span for="email"></span></label>
-                        <input type="text" name="email">
-                    </div>
-                    <div class="set">
-                        <label for="">简介: <span for="description"></span></label>
-                        <input type="text" name="description">
-                    </div>
-                    <div class="but">
-                        <button>提交</button>
-                    </div>
-                </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bussiness-card</title>
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container text-center">
+        <h2>Bussiness-Card-App</h1>
+        <div ng-app="buss-app">
+            <div ng-view="">
+                
             </div>
-        </script>
+        </div>
+    </div>
 
-        <script type="text/html" id="listView">
-            <table>
-                <thead>
-                    <th>姓名</th>
-                    <th>职位</th>
-                    <th>地址</th>
-                    <th>手机号</th>
-                    <th>QQ</th>
-                    <th>邮箱</th>
-                    <th>简介</th>
-                    <th>创建时间</th>
-                    <th>更新时间</th>
-                    <th>操作</th>
-                </thead>
-
-                <% _.each(model,function(item){ %>
-                    <tr>
-                        <td><%= item.name %></td>
-                        <td><%= item.title %></td>
-                        <td><%= item.address %></td>
-                        <td><%= item.phone %></td>
-                        <td><%= item.qq %></td>
-                        <td><%= item.email %></td>
-                        <td><%= item.description %></td>
-                        <td><%= item.create_time %></td>
-                        <td><%= item.update_time %></td>
-                        <td>
-                            <a href="#index/<%= item.id %>">查看</a>
-                            <a id="btnDel" href="javascript:void(0);" data-del="<%= item.id %>">删除</a>
-                        </td>
-                    </tr>
-                <% }) %>
-
-            </table>
-            <div class="edit" style="right:80px" onclick="location.href='#new'">新增</div>
-        </script>
-
-        <!--<a href="#index">【index】</a>
-        <a href="#new">【new】</a>
-        <a href="#edit/kkk">【edit】</a>-->
-        <script src="libs/require.js" data-main="app"></script>
-    </body>
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/controllers/mainCtrl.js"></script>
+    <script src="js/controllers/detailCtrl.js"></script>
+    <script src="js/controllers/editCtrl.js"></script>
+    <script src="js/services/getData.js"></script>
+</body>
 </html>

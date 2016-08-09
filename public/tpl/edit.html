@@ -1,0 +1,35 @@
+<main id="formList">
+    <form action="#">
+        <div>姓名：<span for="name"></span></div>
+        <div>
+            <input type="text" name="name" autofocus placeholder="请输入姓名" ng-model="name" value="{{data.name}}">
+        </div>
+        <div>职位：<span for="title"></span></div>
+        <div>
+            <input type="text" name="title" placeholder="请输入职位" ng-model="title" value="{{data.title}}">
+        </div>
+        <div>地址：<span for="address"></span></div>
+        <div>
+            <input type="text" name="address" placeholder="请输入详细地址" ng-model="address" value="{{data.address}}">
+        </div>
+        <div>手机号：<span for="phone"></span></div>
+        <div>
+            <input type="text" name="phone" placeholder="请输入手机号" ng-model="phone" value="{{data.phone}}">
+        </div>
+        <div>QQ号：<span for="qq"></span></div>
+        <div>
+            <input type="text" name="qq" placeholder="请输入QQ号" ng-model="qq" value="{{data.qq}}">
+        </div>
+        <div>电子邮箱：<span for="email"></span></div>
+        <div>
+            <input type="text" name="email" placeholder="请输入电子邮箱地址" ng-model="email" value="{{data.email}}">
+        </div>
+        <div>介绍：<span for="description"></span></div>
+        <div>
+            <textarea name="description" ng-model="description" placeholder="请输入个人简介">{{data.description}}</textarea>
+        </div>
+        <div>
+            <a class="btn btn-info" ng-click="doPostData()">保存</a>
+        </div>
+    </form>
+</main>
