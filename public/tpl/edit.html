@@ -48,7 +48,7 @@
             <textarea name="description" ng-model="description" placeholder="请输入个人简介">{{data.description}}</textarea>
         </div>
         <div>
-            <a class="btn btn-info" ng-click="doPostData()" ng-disabled="myForm.name.$dirty && myForm.name.$invalid || myForm.title.$dirty && myForm.title.$invalid || myForm.phone.$dirty && myForm.phone.$invalid || myForm.email.$dirty && myForm.email.$invalid ">保存</a>
+            <a class="btn btn-info" ng-click="doPostData()" ng-disabled="myForm.$invalid">保存</a>
         </div>
     </form>
 </main>
