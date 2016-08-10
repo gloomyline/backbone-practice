@@ -33,7 +33,16 @@ var Card = db.model('card', {
     update_time: { type: Date, default: Date.now }
 })
 
-
+// 解决跨域http请求问题
+app.all('*', (req, res,next) => {
+    // console.log('开始解决跨域问题！')
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")  
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS") 
+    res.header("X-Powered-By",' 3.2.1')  
+    res.header("Content-Type", "application/json;charset=utf-8")
+    next()
+})
 
 // 使用mongoose保存数据到数据库，新建一个collections集合，名字为card
 // 存数据
@@ -54,7 +63,6 @@ app.post('/card', (req, res) => {
             var data = card.toObject();
             data.id = data._id;
             delete data._id;
-            res.header('Access-Control-Allow-Origin', '*')
             res.json({ status: 'y', msg: "新增数据成功", data: data })
         }
     })
@@ -81,7 +89,6 @@ app.put('/card/:id', (req, res) => {
             var data = card.toObject();
             data.id = req.params.id;
             delete data._id;
-            res.header('Access-Control-Allow-Origin', '*')
             res.json({ status: 'y', msg: "修改数据成功", data: data })
         }
     })
@@ -109,8 +116,6 @@ app.get('/card/:id?', (req, res) => {
                     var temData = data.toObject();
                     temData.id = data._id;
                     delete temData._id
-
-                    res.header('Access-Control-Allow-Origin', '*')
                     res.json({ status: "y", msg: "获取数据成功", data: temData });
                 } else {
                     res.json({ status: "n", msg: "获取数据失败", data: {} });
@@ -132,7 +137,6 @@ app.get('/card/:id?', (req, res) => {
                     return item;
                 })
             }
-            res.header('Access-Control-Allow-Origin', '*')
             res.json({ status: 'y', msg: '获取数据成功', data: data })
         })
     }
@@ -153,11 +157,6 @@ app.delete('/card/:id', (req, res) => {
     } else {
         res.json({ status: 'n', msg: '参数错误' })
     }
-})
-
-// 解决跨域http请求问题
-app.all('/card/*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*')
 })
 
 app.listen(3001, (req, res) => {
