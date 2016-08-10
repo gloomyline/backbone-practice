@@ -193,3 +193,7 @@ form span {
 .cards a {
     color: #fff;
 }
+
+.ng-enter{
+    animation: fadeIn 1s;
+}

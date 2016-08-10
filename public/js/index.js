@@ -1,4 +1,4 @@
-var app = angular.module('buss-app',['ngRoute']);
+var app = angular.module('buss-app',['ngRoute','ngAnimate']);
 
 // 设置app服务
 app.config(['$routeProvider',function($routeProvider){
